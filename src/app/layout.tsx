@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,8 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${inter.variable} ${geistMono.variable} antialiased`}
+        className={`${montserrat.variable} ${inter.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-900`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
