@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ChessStats from './components/ChessStats';
 
 function ForestMist() {
   return (
@@ -38,7 +39,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center">
+      <section className="relative h-screen flex items-center">
         {/* Forest GIF background */}
         <div className="absolute inset-0">
           <div 
@@ -58,7 +59,7 @@ export default function Home() {
         <RainEffect />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 px-6 max-w-7xl mx-auto">
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 px-6 max-w-[90rem] mx-auto">
           {/* Image container */}
           <div className="relative w-64 h-80 md:w-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
             <Image
@@ -95,6 +96,11 @@ export default function Home() {
                 Contact Me
               </button>
             </div>
+          </div>
+
+          {/* Chess Stats */}
+          <div className="hidden md:block">
+            <ChessStats />
           </div>
         </div>
 
