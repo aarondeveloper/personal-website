@@ -97,7 +97,20 @@ export default function ChessStats() {
     <div className="space-y-4 w-[300px]">
       {/* Ratings Card */}
       <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white">
-        <h3 className="text-xl font-semibold mb-4 text-emerald-200">Chess Ratings</h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-semibold text-emerald-200">Chess Ratings</h3>
+          <a 
+            href="https://www.chess.com/member/aaron_growler"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-1 hover:bg-white/10 px-2 py-1 rounded-lg"
+          >
+            Profile
+            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+            </svg>
+          </a>
+        </div>
         <div className="space-y-4">
           {stats.chess_rapid && (
             <div className="flex justify-between items-center">
@@ -156,7 +169,7 @@ export default function ChessStats() {
               href={lastGame.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-2"
+              className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-2 hover:bg-white/10 px-3 py-1.5 rounded-lg"
             >
               View Game
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -166,20 +179,6 @@ export default function ChessStats() {
           </div>
         </div>
       )}
-
-      <div className="text-center">
-        <a 
-          href="https://www.chess.com/member/aaron_growler"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-2"
-        >
-          View Full Profile
-          <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
-          </svg>
-        </a>
-      </div>
     </div>
   );
 } 
