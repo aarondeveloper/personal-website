@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 function ForestMist() {
   return (
     <div className="absolute inset-0">
@@ -48,7 +50,7 @@ export default function Home() {
           ></div>
           
           {/* Overlay for better text readability */}
-          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>
 
         {/* Atmospheric effects */}
@@ -56,27 +58,43 @@ export default function Home() {
         <RainEffect />
 
         {/* Content */}
-        <div className="relative z-10 text-center px-4 backdrop-blur-sm bg-black/20 py-8 rounded-2xl">
-          <h1 className="text-6xl md:text-8xl font-extrabold font-montserrat mb-6">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-200">
-              AARON
-            </span>
-            <span className="block text-3xl md:text-4xl mt-2 text-emerald-100">
-              Full Stack Developer
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl font-inter text-emerald-50 max-w-2xl mx-auto mb-8">
-            Crafting digital experiences with code and creativity
-          </p>
-          
-          <div className="flex gap-6 justify-center">
-            <button className="px-8 py-3 bg-emerald-600/80 hover:bg-emerald-600 backdrop-blur-sm rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-              View Projects
-            </button>
-            <button className="px-8 py-3 border-2 border-white/80 hover:border-white backdrop-blur-sm hover:bg-white/20 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-              Contact Me
-            </button>
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 px-6 max-w-7xl mx-auto">
+          {/* Image container */}
+          <div className="relative w-64 h-80 md:w-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+            <Image
+              src="/me_and_growler.jpg"
+              alt="Aaron with his dog Growler"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="rounded-2xl"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+
+          {/* Text content */}
+          <div className="text-center md:text-left px-4 backdrop-blur-sm bg-black/20 py-8 rounded-2xl max-w-2xl">
+            <h1 className="text-7xl md:text-9xl font-extrabold font-montserrat mb-6">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-200">
+                AARON
+              </span>
+              <span className="block text-4xl md:text-5xl mt-2 text-emerald-100">
+                Full Stack Developer
+              </span>
+            </h1>
+            
+            <p className="text-2xl md:text-3xl font-inter text-emerald-50 max-w-2xl mx-auto mb-8">
+              Crafting digital experiences with code and creativity
+            </p>
+            
+            <div className="flex gap-6 justify-center md:justify-start">
+              <button className="px-8 py-4 bg-emerald-600/80 hover:bg-emerald-600 backdrop-blur-sm rounded-full font-semibold transition-all duration-300 transform hover:scale-105 text-lg">
+                View Projects
+              </button>
+              <button className="px-8 py-4 border-2 border-white/80 hover:border-white backdrop-blur-sm hover:bg-white/20 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 text-lg">
+                Contact Me
+              </button>
+            </div>
           </div>
         </div>
 
