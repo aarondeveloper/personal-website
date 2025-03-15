@@ -53,7 +53,7 @@ export default function ChessStats() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [game, setGame] = useState<Chess | null>(null);
-  const [currentMove, setCurrentMove] = useState(-1); // -1 means final position
+  const [currentMove, setCurrentMove] = useState(0); // Start at move 0 instead of -1
   const [moves, setMoves] = useState<string[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playInterval, setPlayInterval] = useState<NodeJS.Timeout | null>(null);
@@ -77,14 +77,20 @@ export default function ChessStats() {
             const latestGame = gamesData.games[gamesData.games.length - 1];
             setLastGame(latestGame);
             
-            // Initialize chess.js with the PGN
+            // Initialize chess.js with the PGN and set to starting position
             const chess = new Chess();
             chess.loadPgn(latestGame.pgn);
-            setGame(chess);
+            const startingPosition = new Chess();
+            setGame(startingPosition);
             
             // Get all moves
             const history = chess.history();
             setMoves(history);
+
+            // Start auto-play after a short delay
+            setTimeout(() => {
+              startAutoPlay();
+            }, 1000);
           }
         }
       } catch (err) {
@@ -122,8 +128,41 @@ export default function ChessStats() {
     setCurrentMove(newMoveIndex);
   }, [game, moves, lastGame, currentMove]);
 
+  const startAutoPlay = useCallback(() => {
+    const interval = setInterval(() => {
+      setCurrentMove(prev => {
+        if (prev >= moves.length - 1) {
+          clearInterval(interval);
+          setPlayInterval(null);
+          setIsPlaying(false);
+          return prev;
+        }
+        
+        const nextMove = prev + 1;
+        const newGame = new Chess();
+        
+        // Play all moves up to the next position
+        for (let i = 0; i <= nextMove; i++) {
+          newGame.move(moves[i]);
+        }
+        setGame(newGame);
+        
+        return nextMove;
+      });
+    }, 1000);
+    
+    setPlayInterval(interval);
+    setIsPlaying(true);
+  }, [moves]);
+
   const handleStartGame = () => {
     goToMove(0);
+    setIsPlaying(false);
+    if (playInterval) clearInterval(playInterval);
+  };
+
+  const handleFinalPosition = () => {
+    goToMove(-1);
     setIsPlaying(false);
     if (playInterval) clearInterval(playInterval);
   };
@@ -154,31 +193,7 @@ export default function ChessStats() {
       if (currentMove === moves.length - 1 || currentMove === -1) {
         goToMove(0);
       }
-      
-      const interval = setInterval(() => {
-        setCurrentMove(prev => {
-          if (prev >= moves.length - 1) {
-            clearInterval(interval);
-            setPlayInterval(null);
-            setIsPlaying(false);
-            return prev;
-          }
-          
-          const nextMove = prev + 1;
-          const newGame = new Chess();
-          
-          // Play all moves up to the next position
-          for (let i = 0; i <= nextMove; i++) {
-            newGame.move(moves[i]);
-          }
-          setGame(newGame);
-          
-          return nextMove;
-        });
-      }, 1000); // Slightly faster - 1 second per move
-      
-      setPlayInterval(interval);
-      setIsPlaying(true);
+      startAutoPlay();
     }
   };
 
@@ -263,13 +278,21 @@ export default function ChessStats() {
 
           {/* Game Controls */}
           <div className="flex flex-col items-center gap-4 mb-4">
-            {/* Start Game Button */}
-            <button
-              onClick={handleStartGame}
-              className="w-full py-2 px-4 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors"
-            >
-              {currentMove === -1 ? "Start Game" : "Reset to Start"}
-            </button>
+            {/* Control Buttons */}
+            <div className="flex gap-2 w-full">
+              <button
+                onClick={handleStartGame}
+                className="flex-1 py-2 px-4 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-sm"
+              >
+                Reset to Start
+              </button>
+              <button
+                onClick={handleFinalPosition}
+                className="flex-1 py-2 px-4 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-sm"
+              >
+                Final Position
+              </button>
+            </div>
 
             {/* Navigation Controls */}
             <div className="flex items-center justify-between w-full">
