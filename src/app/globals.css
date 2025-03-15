@@ -24,3 +24,82 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Waterfall Animation */
+@keyframes waterfall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.waterfall {
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,0.1) 0%,
+    rgba(255,255,255,0.3) 20%,
+    rgba(255,255,255,0.2) 40%,
+    rgba(255,255,255,0.4) 60%,
+    rgba(255,255,255,0.2) 80%,
+    rgba(255,255,255,0.1) 100%
+  );
+  animation: waterfall 8s linear infinite;
+}
+
+/* Rain Effect */
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.rain-drop {
+  position: fixed;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.3));
+  animation: rain linear infinite;
+}
+
+/* Forest Mist Animation */
+@keyframes mist {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-10%) translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(10%) translateY(-5%);
+  }
+}
+
+.forest-mist {
+  animation: mist 20s ease-in-out infinite;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.1) 0%,
+    transparent 70%
+  );
+}
+
+/* Forest Light Animation */
+@keyframes forestLight {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.forest-light {
+  animation: forestLight 4s ease-in-out infinite;
+}
