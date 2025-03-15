@@ -89,7 +89,7 @@ export default function ChessStats() {
 
             // Start auto-play after a short delay
             setTimeout(() => {
-              startAutoPlay();
+              setIsPlaying(true);
             }, 1000);
           }
         }
@@ -107,6 +107,45 @@ export default function ChessStats() {
       if (playInterval) clearInterval(playInterval);
     };
   }, []);
+
+  // Separate useEffect to handle auto-play state changes
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCurrentMove(prev => {
+          if (prev >= moves.length - 1) {
+            clearInterval(interval);
+            setIsPlaying(false);
+            return prev;
+          }
+          
+          const nextMove = prev + 1;
+          const newGame = new Chess();
+          
+          // Play all moves up to the next position
+          for (let i = 0; i <= nextMove; i++) {
+            newGame.move(moves[i]);
+          }
+          setGame(newGame);
+          
+          return nextMove;
+        });
+      }, 1000);
+      
+      setPlayInterval(interval);
+    } else {
+      if (playInterval) {
+        clearInterval(playInterval);
+        setPlayInterval(null);
+      }
+    }
+
+    return () => {
+      if (playInterval) {
+        clearInterval(playInterval);
+      }
+    };
+  }, [isPlaying, moves]);
 
   const goToMove = useCallback((moveIndex: number | ((prev: number) => number)) => {
     if (!game) return;
@@ -127,33 +166,6 @@ export default function ChessStats() {
     setGame(newGame);
     setCurrentMove(newMoveIndex);
   }, [game, moves, lastGame, currentMove]);
-
-  const startAutoPlay = useCallback(() => {
-    const interval = setInterval(() => {
-      setCurrentMove(prev => {
-        if (prev >= moves.length - 1) {
-          clearInterval(interval);
-          setPlayInterval(null);
-          setIsPlaying(false);
-          return prev;
-        }
-        
-        const nextMove = prev + 1;
-        const newGame = new Chess();
-        
-        // Play all moves up to the next position
-        for (let i = 0; i <= nextMove; i++) {
-          newGame.move(moves[i]);
-        }
-        setGame(newGame);
-        
-        return nextMove;
-      });
-    }, 1000);
-    
-    setPlayInterval(interval);
-    setIsPlaying(true);
-  }, [moves]);
 
   const handleStartGame = () => {
     goToMove(0);
@@ -193,7 +205,7 @@ export default function ChessStats() {
       if (currentMove === moves.length - 1 || currentMove === -1) {
         goToMove(0);
       }
-      startAutoPlay();
+      setIsPlaying(true);
     }
   };
 
