@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <PageTemplate>
-      <main className="min-h-screen flex flex-col">
+      <main className="min-h-screen flex flex-col pt-16">
         {/* Content */}
         <div className="relative flex-1 flex items-center justify-center gap-8 px-5 mx-auto max-w-[1850px]">
           {/* Left Side - Image */}
@@ -60,15 +60,16 @@ export default function Home() {
           <div className="flex-1 flex flex-col justify-between">
             {/* About Me */}
             <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6">
-              <h1 className="text-4xl font-bold text-emerald-100/90 mb-4">
+              <h1 className="text-4xl font-bold text-white mb-4">
                 About Me...
               </h1>
-              <p className="text-lg text-emerald-100/90 leading-relaxed">
-                Hi there! I&apos;m Aaron, a Full Stack Developer, Data Engineer, and Data Scientist with a passion for building modern web applications. 
-                When I&apos;m not working with technologies like React, Next.js, or diving into data pipelines, you&apos;ll find me on the chess board, 
-                training wrestling and jiu-jitsu, or taking my furry companion Growler for walks in nature. I value spending quality time with friends and family, 
-                creating memories and sharing laughs with the people I care about. I believe in pushing my limits, whether it&apos;s optimizing code, 
-                hitting a new PR in the gym, or perfecting a new submission technique on the mats.
+              <p className="text-lg text-white leading-relaxed">
+                Hi there! I&apos;m Aaron, a Full Stack Developer, Data Engineer, and Data Scientist who loves building innovative web applications. 
+                My technical toolkit includes React, Next.js, and advanced data pipelines, but my passions extend far beyond the keyboard. 
+                You&apos;ll often find me analyzing positions on the chess board, training wrestling and jiu-jitsu on the mats, or exploring nature 
+                with my furry companion, Growler. Life isn&apos;t just about personal achievements though - I cherish the moments spent with friends 
+                and family, creating memories and sharing laughter. Whether I&apos;m optimizing code, hitting new PRs in the gym, or perfecting 
+                submission techniques, I&apos;m always pushing my limits and embracing new challenges.
               </p>
             </div>
 
