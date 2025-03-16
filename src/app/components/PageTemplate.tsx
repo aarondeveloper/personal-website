@@ -75,13 +75,11 @@ export default function PageTemplate({ children }: PageTemplateProps) {
         <RainEffect />
       </div>
 
-      {/* Navigation - Fixed Height Container */}
-      <div className="flex-none">
-        <Navbar />
-      </div>
+      {/* Navigation */}
+      <Navbar />
 
       {/* Scrollable Content */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative pt-[120px] md:pt-14">
         <div className="relative z-20">
           {children}
         </div>
