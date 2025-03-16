@@ -123,6 +123,26 @@ export default function ChessStats() {
     setIsPlaying(true);
   }, []);
 
+  const getGameResult = (pgn: string) => {
+    // Extract the result from PGN (usually at the end, like "1-0", "0-1", or "1/2-1/2")
+    const resultMatch = pgn.match(/\s(1-0|0-1|1\/2-1\/2|\*)\s*$/);
+    if (!resultMatch) return '';
+    
+    const result = resultMatch[1];
+    const isWhite = currentGame.white.username === 'aaron_growler';
+    
+    switch (result) {
+      case '1-0':
+        return isWhite ? 'Won' : 'Lost';
+      case '0-1':
+        return isWhite ? 'Lost' : 'Won';
+      case '1/2-1/2':
+        return 'Draw';
+      default:
+        return 'Game in progress';
+    }
+  };
+
   const handlePreviousGame = () => {
     if (currentGameIndex < games.length - 1) {
       setCurrentGameIndex(prev => prev + 1);
@@ -416,7 +436,13 @@ export default function ChessStats() {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">Result</span>
-              <span className="font-medium">{currentGame.result}</span>
+              <span className={`font-medium ${
+                getGameResult(currentGame.pgn).startsWith('Won') ? 'text-emerald-400' :
+                getGameResult(currentGame.pgn).startsWith('Lost') ? 'text-red-400' :
+                'text-yellow-400'
+              }`}>
+                {getGameResult(currentGame.pgn)}
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">Type</span>
