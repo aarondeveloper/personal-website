@@ -7,8 +7,9 @@ declare global {
 }
 
 export default function AmbientSounds() {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const hasAttemptedPlay = useRef(false);
@@ -31,11 +32,16 @@ export default function AmbientSounds() {
               if (audioContextRef.current?.state === 'suspended') {
                 await audioContextRef.current.resume();
               }
-              await audioRef.current?.play();
-              setIsPlaying(true);
+              const playPromise = audioRef.current?.play();
+              if (playPromise) {
+                await playPromise;
+                setIsPlaying(true);
+                setAutoplayBlocked(false);
+              }
             } catch (error) {
               console.log("Autoplay prevented by browser", error);
               setIsPlaying(false);
+              setAutoplayBlocked(true);
             }
           };
 
@@ -59,6 +65,7 @@ export default function AmbientSounds() {
           };
         } catch (error) {
           console.error('Failed to initialize audio:', error);
+          setAutoplayBlocked(true);
         }
       }
     };
@@ -93,12 +100,14 @@ export default function AmbientSounds() {
           await audioContextRef.current.resume();
         }
         await audioRef.current?.play();
+        setAutoplayBlocked(false);
       } else {
         audioRef.current?.pause();
       }
       setIsPlaying(!isPlaying);
     } catch (error) {
       console.error('Error toggling sound:', error);
+      setAutoplayBlocked(true);
     }
   };
 
@@ -108,7 +117,12 @@ export default function AmbientSounds() {
         onClick={toggleSound}
         className="bg-black/40 backdrop-blur-sm rounded-xl px-4 py-2 text-emerald-200 hover:text-emerald-100 transition-colors font-medium"
       >
-        {isPlaying ? 'Turn Sound Off' : 'Turn Sound On'}
+        {autoplayBlocked && !isPlaying 
+          ? 'Click to Turn Rain On' 
+          : isPlaying 
+            ? 'Click to Turn Rain Off' 
+            : 'Click to Turn Rain On'
+        }
       </button>
 
       <div className="flex flex-col gap-1">
