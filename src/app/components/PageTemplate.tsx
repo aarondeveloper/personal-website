@@ -79,7 +79,7 @@ export default function PageTemplate({ children }: PageTemplateProps) {
       <Navbar />
 
       {/* Scrollable Content */}
-      <div className="flex-1 relative pt-[120px] md:pt-14">
+      <div className="flex-1 relative pt-[60px] md:pt-14">
         <div className="relative z-20">
           {children}
         </div>

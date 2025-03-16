@@ -16,14 +16,14 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-black/40 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative">
         {/* Rain Controls - Web Only */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block">
           <AmbientSounds />
         </div>
 
-        <div className="flex items-center justify-center py-4 md:py-2">
-          <div className="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+        <div className="flex items-center justify-center py-2 md:py-2">
+          <div className="flex flex-row flex-wrap justify-center gap-x-2 md:gap-x-8">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -34,7 +34,7 @@ export default function Navbar() {
                     isActive
                       ? 'text-emerald-400 border-emerald-400'
                       : 'text-gray-300 hover:text-emerald-300 border-transparent'
-                  } px-3 py-2 text-lg font-medium border-b-2 transition-colors duration-150 ease-in-out text-center`}
+                  } px-2 py-1.5 text-sm md:text-lg md:px-3 md:py-2 font-medium border-b-2 transition-colors duration-150 ease-in-out text-center whitespace-nowrap`}
                 >
                   {item.name}
                 </Link>
