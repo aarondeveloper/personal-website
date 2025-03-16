@@ -3,7 +3,6 @@ import { Geist_Mono } from "next/font/google";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import RainButton from "./components/RainButton";
 import { AmbientSoundProvider } from "./contexts/AmbientSoundContext";
 
 const montserrat = Montserrat({
@@ -42,7 +41,6 @@ export default function RootLayout({
       >
         <AmbientSoundProvider>
           <Navbar />
-          <RainButton />
           {children}
         </AmbientSoundProvider>
       </body>
