@@ -61,24 +61,15 @@ export default function Home() {
             {/* About Me */}
             <div>
               <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-200 to-emerald-400 mb-4">
-                Aaron Growler
+                About Me...
               </h1>
               <p className="text-lg text-emerald-100/90 leading-relaxed">
-                Hi there! I&apos;m Aaron, a passionate Full Stack Developer with a love for chess and my furry companion, Growler. 
-                I specialize in building modern web applications using cutting-edge technologies like React, Next.js, and TypeScript. 
-                When I&apos;m not coding, you can find me analyzing chess positions or taking Growler for long walks in the rain.
+                Hi there! I&apos;m Aaron, a Full Stack Developer, Data Engineer, and Data Scientist with a passion for building modern web applications. 
+                When I&apos;m not working with technologies like React, Next.js, or diving into data pipelines, you&apos;ll find me on the chess board, 
+                training wrestling and jiu-jitsu, or taking my furry companion Growler for walks in nature. I value spending quality time with friends and family, 
+                creating memories and sharing laughs with the people I care about. I believe in pushing my limits, whether it&apos;s optimizing code, 
+                hitting a new PR in the gym, or perfecting a new submission technique on the mats.
               </p>
-              <div className="mt-4 flex gap-4">
-                <span className="px-3 py-1 rounded-full bg-emerald-900/40 text-emerald-200 text-sm">
-                  Full Stack Development
-                </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-900/40 text-emerald-200 text-sm">
-                  Chess Enthusiast
-                </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-900/40 text-emerald-200 text-sm">
-                  Dog Lover
-                </span>
-              </div>
             </div>
 
             {/* Chess Ratings */}
