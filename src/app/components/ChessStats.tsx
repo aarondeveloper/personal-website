@@ -51,14 +51,14 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
   if (!stats) return null;
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold text-emerald-200">Chess Ratings</h3>
+    <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white min-w-[400px]">
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-2xl font-semibold text-emerald-200">Chess Ratings</h3>
         <a 
           href="https://www.chess.com/member/aaron_growler"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-1 hover:bg-white/10 px-2 py-1 rounded-lg"
+          className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-1 hover:bg-white/10 px-3 py-1.5 rounded-lg"
         >
           Profile
           <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -66,31 +66,31 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
           </svg>
         </a>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-5">
         {stats.chess_rapid && (
           <div className="flex justify-between items-center">
-            <span className="text-emerald-100">Rapid</span>
-            <div>
-              <span className="text-2xl font-bold">{stats.chess_rapid.last.rating}</span>
-              <span className="text-sm text-emerald-200 ml-2">Peak: {stats.chess_rapid.best.rating}</span>
+            <span className="text-xl text-emerald-100">Rapid</span>
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl font-bold">{stats.chess_rapid.last.rating}</span>
+              <span className="text-sm text-emerald-200">Peak: {stats.chess_rapid.best.rating}</span>
             </div>
           </div>
         )}
         {stats.chess_blitz && (
           <div className="flex justify-between items-center">
-            <span className="text-emerald-100">Blitz</span>
-            <div>
-              <span className="text-2xl font-bold">{stats.chess_blitz.last.rating}</span>
-              <span className="text-sm text-emerald-200 ml-2">Peak: {stats.chess_blitz.best.rating}</span>
+            <span className="text-xl text-emerald-100">Blitz</span>
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl font-bold">{stats.chess_blitz.last.rating}</span>
+              <span className="text-sm text-emerald-200">Peak: {stats.chess_blitz.best.rating}</span>
             </div>
           </div>
         )}
         {stats.chess_bullet && (
           <div className="flex justify-between items-center">
-            <span className="text-emerald-100">Bullet</span>
-            <div>
-              <span className="text-2xl font-bold">{stats.chess_bullet.last.rating}</span>
-              <span className="text-sm text-emerald-200 ml-2">Peak: {stats.chess_bullet.best.rating}</span>
+            <span className="text-xl text-emerald-100">Bullet</span>
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl font-bold">{stats.chess_bullet.last.rating}</span>
+              <span className="text-sm text-emerald-200">Peak: {stats.chess_bullet.best.rating}</span>
             </div>
           </div>
         )}

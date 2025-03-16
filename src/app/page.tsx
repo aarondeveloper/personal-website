@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import ChessStats, { ChessRatings } from './components/ChessStats';
 import { useState, useEffect } from 'react';
+import AmbientSounds from './components/AmbientSounds';
 
 interface ChessStats {
   chess_rapid?: {
@@ -100,39 +101,44 @@ export default function Home() {
       {/* Atmospheric effects */}
       <ForestMist />
       <RainEffect />
+      <AmbientSounds />
 
       {/* Content */}
-      <div className="relative flex-1 flex flex-col">
-        {/* Main Content Area (for future content) */}
-        <div className="flex-1">
-          {/* Your future content will go here */}
+      <div className="relative flex-1 flex">
+        {/* Left Side with Centered Image */}
+        <div className="flex items-center pl-6">
+          {/* Image */}
+          <div className="relative w-[400px] h-[500px] rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+            <Image
+              src="/me_and_growler.jpg"
+              alt="Aaron with his dog Growler"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="rounded-2xl"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
         </div>
 
-        {/* Bottom Content */}
-        <div className="relative z-10 w-full max-w-[90rem] mx-auto px-6 py-8">
-          <div className="flex justify-between items-end gap-8">
-            {/* Left Side: Image and Ratings */}
-            <div className="flex gap-8 items-end">
-              {/* Image */}
-              <div className="relative w-80 h-96 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                <Image
-                  src="/me_and_growler.jpg"
-                  alt="Aaron with his dog Growler"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="rounded-2xl"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        {/* Right Side with Bottom Content */}
+        <div className="flex-1 flex flex-col">
+          <div className="flex-1">
+            {/* Future content will go here */}
+          </div>
+
+          {/* Bottom Content */}
+          <div className="relative z-10 w-full pr-6 pb-8">
+            <div className="flex justify-end items-end gap-8">
+              {/* Chess Ratings */}
+              <div className="flex-shrink-0">
+                <ChessRatings stats={stats} />
               </div>
 
-              {/* Chess Ratings */}
-              <ChessRatings stats={stats} />
-            </div>
-
-            {/* Right Side: Chess Game */}
-            <div className="w-[300px]">
-              <ChessStats />
+              {/* Chess Game */}
+              <div className="w-[300px]">
+                <ChessStats />
+              </div>
             </div>
           </div>
         </div>
