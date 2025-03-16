@@ -1,6 +1,7 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
+import AmbientSounds from './AmbientSounds';
 
 function ForestMist() {
   return (
@@ -11,13 +12,30 @@ function ForestMist() {
   );
 }
 
+interface Raindrop {
+  id: number;
+  left: string;
+  animationDuration: string;
+  animationDelay: string;
+}
+
 function RainEffect() {
-  const raindrops = Array.from({ length: 30 }).map((_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    animationDuration: `${Math.random() * 1 + 0.5}s`,
-    animationDelay: `${Math.random() * 2}s`
-  }));
+  const [raindrops, setRaindrops] = useState<Raindrop[]>([]);
+
+  useEffect(() => {
+    const drops = Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      animationDuration: `${Math.random() * 1 + 0.5}s`,
+      animationDelay: `${Math.random() * 2}s`
+    }));
+    setRaindrops(drops);
+  }, []);
+
+  // Return empty div during server-side rendering
+  if (raindrops.length === 0) {
+    return <div className="fixed inset-0 pointer-events-none opacity-20" />;
+  }
 
   return (
     <div className="fixed inset-0 pointer-events-none opacity-20">
@@ -60,6 +78,7 @@ export default function PageTemplate({ children }: PageTemplateProps) {
       {/* Fixed Atmospheric Effects */}
       <ForestMist />
       <RainEffect />
+      <AmbientSounds />
 
       {/* Scrollable Content */}
       <div className="relative min-h-screen">

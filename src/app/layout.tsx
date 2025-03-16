@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { AmbientSoundProvider } from "./contexts/AmbientSoundContext";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -35,8 +36,10 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${inter.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-900`}
       >
-        <Navbar />
-        {children}
+        <AmbientSoundProvider>
+          <Navbar />
+          {children}
+        </AmbientSoundProvider>
       </body>
     </html>
   );
