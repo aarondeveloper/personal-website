@@ -101,14 +101,43 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
 
 export default function ChessStats() {
   const [stats, setStats] = useState<ChessStats | null>(null);
-  const [lastGame, setLastGame] = useState<ChessGame | null>(null);
+  const [games, setGames] = useState<ChessGame[]>([]);
+  const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [game, setGame] = useState<Chess | null>(null);
-  const [currentMove, setCurrentMove] = useState(0); // Start at move 0 instead of -1
+  const [currentMove, setCurrentMove] = useState(0);
   const [moves, setMoves] = useState<string[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playInterval, setPlayInterval] = useState<NodeJS.Timeout | null>(null);
+
+  const currentGame = games[currentGameIndex];
+
+  const loadGame = useCallback((gameToLoad: ChessGame) => {
+    const chess = new Chess();
+    chess.loadPgn(gameToLoad.pgn);
+    const startingPosition = new Chess();
+    setGame(startingPosition);
+    setMoves(chess.history());
+    setCurrentMove(0);
+    setIsPlaying(true);
+  }, []);
+
+  const handlePreviousGame = () => {
+    if (currentGameIndex < games.length - 1) {
+      setCurrentGameIndex(prev => prev + 1);
+      if (playInterval) clearInterval(playInterval);
+      loadGame(games[currentGameIndex + 1]);
+    }
+  };
+
+  const handleNextGame = () => {
+    if (currentGameIndex > 0) {
+      setCurrentGameIndex(prev => prev - 1);
+      if (playInterval) clearInterval(playInterval);
+      loadGame(games[currentGameIndex - 1]);
+    }
+  };
 
   useEffect(() => {
     async function fetchChessData() {
@@ -126,23 +155,8 @@ export default function ChessStats() {
         if (gamesResponse.ok) {
           const gamesData = await gamesResponse.json();
           if (gamesData.games && gamesData.games.length > 0) {
-            const latestGame = gamesData.games[gamesData.games.length - 1];
-            setLastGame(latestGame);
-            
-            // Initialize chess.js with the PGN and set to starting position
-            const chess = new Chess();
-            chess.loadPgn(latestGame.pgn);
-            const startingPosition = new Chess();
-            setGame(startingPosition);
-            
-            // Get all moves
-            const history = chess.history();
-            setMoves(history);
-
-            // Start auto-play after a short delay
-            setTimeout(() => {
-              setIsPlaying(true);
-            }, 1000);
+            setGames(gamesData.games.reverse()); // Reverse so most recent is first
+            loadGame(gamesData.games[0]); // Load most recent game
           }
         }
       } catch (err) {
@@ -154,11 +168,10 @@ export default function ChessStats() {
 
     fetchChessData();
 
-    // Cleanup interval on unmount
     return () => {
       if (playInterval) clearInterval(playInterval);
     };
-  }, []);
+  }, [loadGame]);
 
   // Separate useEffect to handle auto-play state changes
   useEffect(() => {
@@ -207,7 +220,7 @@ export default function ChessStats() {
     
     if (newMoveIndex === -1) {
       // Show final position
-      newGame.loadPgn(lastGame?.pgn || '');
+      newGame.loadPgn(currentGame?.pgn || '');
     } else {
       // Play moves up to the selected index
       for (let i = 0; i <= newMoveIndex; i++) {
@@ -217,7 +230,7 @@ export default function ChessStats() {
     
     setGame(newGame);
     setCurrentMove(newMoveIndex);
-  }, [game, moves, lastGame, currentMove]);
+  }, [game, moves, currentGame]);
 
   const handleStartGame = () => {
     goToMove(0);
@@ -261,6 +274,17 @@ export default function ChessStats() {
     }
   };
 
+  const formatGameDate = (timestamp: number) => {
+    const date = new Date(timestamp * 1000);
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }).format(date);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center space-x-2 animate-pulse">
@@ -271,16 +295,42 @@ export default function ChessStats() {
     );
   }
 
-  if (error || !stats) {
+  if (error || !stats || !currentGame) {
     return null;
   }
 
   return (
     <div className="space-y-4">
-      {/* Last Game Card */}
-      {lastGame && game && (
+      {currentGame && game && (
         <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white">
-          <h3 className="text-xl font-semibold mb-4 text-emerald-200">Most Recent Game</h3>
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={handlePreviousGame}
+              disabled={currentGameIndex >= games.length - 1}
+              className="p-2 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-emerald-500/20 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center">
+              <h3 className="text-xl font-semibold text-emerald-200">
+                {formatGameDate(currentGame.end_time)}
+              </h3>
+              {currentGameIndex === 0 && (
+                <span className="text-sm text-emerald-400 mt-1">Most Recent</span>
+              )}
+            </div>
+            <button
+              onClick={handleNextGame}
+              disabled={currentGameIndex <= 0}
+              className="p-2 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-emerald-500/20 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
           
           {/* Chess Board */}
           <div className="mb-4">
@@ -289,7 +339,7 @@ export default function ChessStats() {
               boardWidth={268}
               customDarkSquareStyle={{ backgroundColor: '#374151' }}
               customLightSquareStyle={{ backgroundColor: '#4B5563' }}
-              boardOrientation={lastGame.white.username === 'aaron_growler' ? 'white' : 'black'}
+              boardOrientation={currentGame.white.username === 'aaron_growler' ? 'white' : 'black'}
             />
           </div>
 
@@ -358,19 +408,19 @@ export default function ChessStats() {
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">White</span>
-              <span className="font-medium">{lastGame.white.username} ({lastGame.white.rating})</span>
+              <span className="font-medium">{currentGame.white.username} ({currentGame.white.rating})</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">Black</span>
-              <span className="font-medium">{lastGame.black.username} ({lastGame.black.rating})</span>
+              <span className="font-medium">{currentGame.black.username} ({currentGame.black.rating})</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">Result</span>
-              <span className="font-medium">{lastGame.result}</span>
+              <span className="font-medium">{currentGame.result}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">Type</span>
-              <span className="font-medium capitalize">{lastGame.time_class}</span>
+              <span className="font-medium capitalize">{currentGame.time_class}</span>
             </div>
           </div>
         </div>
