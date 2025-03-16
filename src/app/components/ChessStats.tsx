@@ -58,9 +58,9 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
           href="https://www.chess.com/member/aaron_growler"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-emerald-200 hover:text-emerald-100 transition-colors inline-flex items-center gap-1 hover:bg-white/10 px-3 py-1.5 rounded-lg"
+          className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105 inline-flex items-center gap-2 font-medium"
         >
-          Profile
+          View Profile
           <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
           </svg>
