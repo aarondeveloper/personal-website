@@ -42,7 +42,7 @@ export default function Home() {
     <PageTemplate>
       <main className="min-h-screen flex flex-col">
         {/* Content */}
-        <div className="relative flex-1 flex items-center gap-8 px-6">
+        <div className="relative flex-1 flex items-center justify-center gap-8 px-5 mx-auto max-w-[1850px]">
           {/* Left Side - Image */}
           <div className="relative w-[400px] h-[500px] rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
             <Image
@@ -57,10 +57,10 @@ export default function Home() {
           </div>
 
           {/* Middle - About Me and Chess Ratings */}
-          <div className="flex-1 flex flex-col justify-between max-w-xl">
+          <div className="flex-1 flex flex-col justify-between">
             {/* About Me */}
-            <div>
-              <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-200 to-emerald-400 mb-4">
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6">
+              <h1 className="text-4xl font-bold text-emerald-100/90 mb-4">
                 About Me...
               </h1>
               <p className="text-lg text-emerald-100/90 leading-relaxed">
