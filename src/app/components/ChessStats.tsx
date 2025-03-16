@@ -280,7 +280,7 @@ export default function ChessStats() {
       {/* Last Game Card */}
       {lastGame && game && (
         <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white">
-          <h3 className="text-xl font-semibold mb-4 text-emerald-200">Last Game</h3>
+          <h3 className="text-xl font-semibold mb-4 text-emerald-200">Most Recent Game</h3>
           
           {/* Chess Board */}
           <div className="mb-4">
