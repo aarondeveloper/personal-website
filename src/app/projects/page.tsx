@@ -6,7 +6,7 @@ import React from 'react';
 interface ProjectLink {
   name: string;
   url: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 interface Project {
