@@ -17,7 +17,7 @@ export default function AmbientSounds() {
         }
       </button>
 
-      <div className="flex flex-col gap-1">
+      <div className="hidden md:flex flex-col gap-1">
         <span className="text-emerald-200 text-sm">Adjust Rain Intensity</span>
         <input
           type="range"
