@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <PageTemplate>
-      <main className="flex flex-col md:flex-row items-start gap-4 px-4 md:px-6 py-4 mx-auto max-w-screen-2xl h-[calc(100vh-80px)]">
+      <main className="flex flex-col md:flex-row items-start gap-4 px-4 md:px-6 py-4 mx-auto max-w-screen-2xl md:h-[calc(100vh-80px)] md:justify-center">
         {/* Left Side - Image */}
         <div className="w-full md:w-[500px] h-[300px] md:h-[600px] relative rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
           <Image

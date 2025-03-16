@@ -322,14 +322,19 @@ export default function ChessStats() {
   // Calculate board width based on container width
   const getBoardWidth = () => {
     if (typeof window === 'undefined') return 268;
-    return Math.min(window.innerWidth - 48, 400); // 48px for padding
+    // For mobile, keep the original calculation
+    if (window.innerWidth < 768) {
+      return Math.min(window.innerWidth - 48, 400);
+    }
+    // For web view, use a smaller fixed size
+    return 300; // Even smaller fixed size for web view to reduce vertical height
   };
 
   return (
     <div className="space-y-4 w-full">
       {currentGame && game && (
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 md:p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 md:p-4 text-white">
+          <div className="flex items-center justify-between mb-2 md:mb-2">
             <button
               onClick={handlePreviousGame}
               disabled={currentGameIndex >= games.length - 1}
@@ -340,11 +345,11 @@ export default function ChessStats() {
               </svg>
             </button>
             <div className="flex flex-col items-center">
-              <h3 className="text-base md:text-xl font-semibold text-emerald-200">
+              <h3 className="text-base md:text-lg font-semibold text-emerald-200">
                 {formatGameDate(currentGame.end_time)}
               </h3>
               {currentGameIndex === 0 && (
-                <span className="text-xs md:text-sm text-emerald-400 mt-1">Most Recent</span>
+                <span className="text-xs text-emerald-400 mt-0.5">Most Recent</span>
               )}
             </div>
             <button
@@ -359,8 +364,8 @@ export default function ChessStats() {
           </div>
           
           {/* Chess Board */}
-          <div className="mb-4 flex justify-center">
-            <div className="w-full max-w-[400px]">
+          <div className="mb-2 md:mb-2 flex justify-center">
+            <div className="w-full max-w-[400px] md:max-w-[300px]">
               <Chessboard 
                 position={game.fen()} 
                 boardWidth={getBoardWidth()}
@@ -372,18 +377,18 @@ export default function ChessStats() {
           </div>
 
           {/* Game Controls */}
-          <div className="flex flex-col items-center gap-3 mb-4">
+          <div className="flex flex-col items-center gap-2 mb-3">
             {/* Control Buttons */}
             <div className="flex gap-2 w-full">
               <button
                 onClick={handleStartGame}
-                className="flex-1 py-2 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
+                className="flex-1 py-1.5 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
               >
                 Reset
               </button>
               <button
                 onClick={handleFinalPosition}
-                className="flex-1 py-2 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
+                className="flex-1 py-1.5 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
               >
                 Final
               </button>
@@ -394,16 +399,16 @@ export default function ChessStats() {
               <button
                 onClick={handlePrevMove}
                 disabled={currentMove === -1}
-                className="p-2 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-1.5 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
               <button
                 onClick={toggleAutoPlay}
-                className={`px-4 py-2 rounded-lg transition-colors ${
+                className={`px-4 py-1.5 rounded-lg transition-colors ${
                   isPlaying 
                     ? 'bg-emerald-600/60 text-emerald-100' 
                     : 'bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100'
@@ -415,16 +420,16 @@ export default function ChessStats() {
               <button
                 onClick={handleNextMove}
                 disabled={currentMove === moves.length - 1}
-                className="p-2 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-1.5 text-emerald-200 hover:text-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
 
             {/* Move Counter */}
-            <div className="text-emerald-100 text-sm">
+            <div className="text-emerald-100 text-xs">
               {currentMove === -1 
                 ? "Final Position" 
                 : `Move ${currentMove + 1} of ${moves.length}`
@@ -433,7 +438,7 @@ export default function ChessStats() {
           </div>
 
           {/* Game Info */}
-          <div className="space-y-2 text-sm md:text-base">
+          <div className="space-y-1.5 text-sm">
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">White</span>
               <span className="font-medium">{currentGame.white.username} ({currentGame.white.rating})</span>
