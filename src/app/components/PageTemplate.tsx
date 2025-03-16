@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useState, useEffect } from 'react';
-import AmbientSounds from './AmbientSounds';
+import Navbar from './Navbar';
 
 function ForestMist() {
   return (
@@ -60,8 +60,8 @@ interface PageTemplateProps {
 
 export default function PageTemplate({ children }: PageTemplateProps) {
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Fixed Background Layer */}
+    <div className="flex flex-col min-h-screen bg-black text-white">
+      {/* Fixed Background and Effects */}
       <div className="fixed inset-0">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -70,40 +70,20 @@ export default function PageTemplate({ children }: PageTemplateProps) {
             filter: 'brightness(0.8)'
           }}
         ></div>
-        
-        {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-black opacity-40"></div>
+        <ForestMist />
+        <RainEffect />
       </div>
 
-      {/* Fixed Atmospheric Effects */}
-      <ForestMist />
-      <RainEffect />
-      <AmbientSounds />
+      {/* Navigation - Fixed Height Container */}
+      <div className="flex-none">
+        <Navbar />
+      </div>
 
       {/* Scrollable Content */}
-      <div className="relative min-h-screen">
-        <div className="relative z-10">
+      <div className="flex-1 relative">
+        <div className="relative z-20">
           {children}
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="fixed bottom-8 right-8 animate-bounce">
-          <div className="flex flex-col items-center text-white/60">
-            <svg 
-              className="w-6 h-6"
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-            <span className="text-sm mt-2">Scroll</span>
-          </div>
         </div>
       </div>
     </div>

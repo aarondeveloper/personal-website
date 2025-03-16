@@ -51,14 +51,14 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
   if (!stats) return null;
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white min-w-[400px]">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-2xl font-semibold text-emerald-200">Chess Ratings</h3>
+    <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 text-white w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
+        <h3 className="text-xl font-semibold text-emerald-200">Chess Ratings</h3>
         <a 
           href="https://www.chess.com/member/aaron_growler"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105 inline-flex items-center gap-2 font-medium"
+          className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 px-3 py-1.5 rounded-lg transition-all duration-200 hover:scale-105 inline-flex items-center gap-2 text-sm font-medium"
         >
           View Profile
           <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -66,31 +66,31 @@ export function ChessRatings({ stats }: { stats: ChessStats | null }) {
           </svg>
         </a>
       </div>
-      <div className="space-y-5">
+      <div className="space-y-3">
         {stats.chess_rapid && (
           <div className="flex justify-between items-center">
-            <span className="text-xl text-emerald-100">Rapid</span>
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold">{stats.chess_rapid.last.rating}</span>
-              <span className="text-sm text-emerald-200">Peak: {stats.chess_rapid.best.rating}</span>
+            <span className="text-base text-emerald-100">Rapid</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xl font-bold">{stats.chess_rapid.last.rating}</span>
+              <span className="text-xs text-emerald-200">Peak: {stats.chess_rapid.best.rating}</span>
             </div>
           </div>
         )}
         {stats.chess_blitz && (
           <div className="flex justify-between items-center">
-            <span className="text-xl text-emerald-100">Blitz</span>
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold">{stats.chess_blitz.last.rating}</span>
-              <span className="text-sm text-emerald-200">Peak: {stats.chess_blitz.best.rating}</span>
+            <span className="text-base text-emerald-100">Blitz</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xl font-bold">{stats.chess_blitz.last.rating}</span>
+              <span className="text-xs text-emerald-200">Peak: {stats.chess_blitz.best.rating}</span>
             </div>
           </div>
         )}
         {stats.chess_bullet && (
           <div className="flex justify-between items-center">
-            <span className="text-xl text-emerald-100">Bullet</span>
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold">{stats.chess_bullet.last.rating}</span>
-              <span className="text-sm text-emerald-200">Peak: {stats.chess_bullet.best.rating}</span>
+            <span className="text-base text-emerald-100">Bullet</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xl font-bold">{stats.chess_bullet.last.rating}</span>
+              <span className="text-xs text-emerald-200">Peak: {stats.chess_bullet.best.rating}</span>
             </div>
           </div>
         )}
@@ -319,10 +319,16 @@ export default function ChessStats() {
     return null;
   }
 
+  // Calculate board width based on container width
+  const getBoardWidth = () => {
+    if (typeof window === 'undefined') return 268;
+    return Math.min(window.innerWidth - 48, 400); // 48px for padding
+  };
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full">
       {currentGame && game && (
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 text-white">
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 md:p-6 text-white">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={handlePreviousGame}
@@ -334,11 +340,11 @@ export default function ChessStats() {
               </svg>
             </button>
             <div className="flex flex-col items-center">
-              <h3 className="text-xl font-semibold text-emerald-200">
+              <h3 className="text-base md:text-xl font-semibold text-emerald-200">
                 {formatGameDate(currentGame.end_time)}
               </h3>
               {currentGameIndex === 0 && (
-                <span className="text-sm text-emerald-400 mt-1">Most Recent</span>
+                <span className="text-xs md:text-sm text-emerald-400 mt-1">Most Recent</span>
               )}
             </div>
             <button
@@ -353,31 +359,33 @@ export default function ChessStats() {
           </div>
           
           {/* Chess Board */}
-          <div className="mb-4">
-            <Chessboard 
-              position={game.fen()} 
-              boardWidth={268}
-              customDarkSquareStyle={{ backgroundColor: '#374151' }}
-              customLightSquareStyle={{ backgroundColor: '#4B5563' }}
-              boardOrientation={currentGame.white.username === 'aaron_growler' ? 'white' : 'black'}
-            />
+          <div className="mb-4 flex justify-center">
+            <div className="w-full max-w-[400px]">
+              <Chessboard 
+                position={game.fen()} 
+                boardWidth={getBoardWidth()}
+                customDarkSquareStyle={{ backgroundColor: '#374151' }}
+                customLightSquareStyle={{ backgroundColor: '#4B5563' }}
+                boardOrientation={currentGame.white.username === 'aaron_growler' ? 'white' : 'black'}
+              />
+            </div>
           </div>
 
           {/* Game Controls */}
-          <div className="flex flex-col items-center gap-4 mb-4">
+          <div className="flex flex-col items-center gap-3 mb-4">
             {/* Control Buttons */}
             <div className="flex gap-2 w-full">
               <button
                 onClick={handleStartGame}
-                className="flex-1 py-2 px-4 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-sm"
+                className="flex-1 py-2 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
               >
-                Reset to Start
+                Reset
               </button>
               <button
                 onClick={handleFinalPosition}
-                className="flex-1 py-2 px-4 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-sm"
+                className="flex-1 py-2 px-3 bg-emerald-600/40 hover:bg-emerald-600/60 text-emerald-100 rounded-lg transition-colors text-xs md:text-sm"
               >
-                Final Position
+                Final
               </button>
             </div>
 
@@ -425,7 +433,7 @@ export default function ChessStats() {
           </div>
 
           {/* Game Info */}
-          <div className="space-y-2">
+          <div className="space-y-2 text-sm md:text-base">
             <div className="flex justify-between items-center">
               <span className="text-emerald-100">White</span>
               <span className="font-medium">{currentGame.white.username} ({currentGame.white.rating})</span>
