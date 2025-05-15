@@ -38,7 +38,7 @@ const experiences = [
 export default function Experience() {
   return (
     <PageTemplate>
-      <main className="min-h-screen flex flex-col pt-16 md:pt-24">
+      <main className="min-h-screen flex flex-col pt-8 md:pt-16">
         <div className="relative flex-1 flex flex-col items-center px-3 md:px-5 mx-auto max-w-[1850px]">
           
           <div className="w-full space-y-6 md:space-y-8">
