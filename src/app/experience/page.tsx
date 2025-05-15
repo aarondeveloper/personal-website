@@ -38,9 +38,8 @@ const experiences = [
 export default function Experience() {
   return (
     <PageTemplate>
-      <main className="min-h-screen flex flex-col pt-16 md:pt-24">
+      <main className="min-h-screen flex flex-col pt-8 md:pt-16">
         <div className="relative flex-1 flex flex-col items-center px-3 md:px-5 mx-auto max-w-[1850px]">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-12">Professional Experience</h1>
           
           <div className="w-full space-y-6 md:space-y-8">
             {experiences.map((experience) => (
