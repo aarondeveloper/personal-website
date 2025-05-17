@@ -64,6 +64,50 @@ export default function Home() {
           </div>
         </div>
 
+        {/* LinkedIn and Resume Buttons - Only visible on desktop */}
+        <div className="hidden md:flex justify-center gap-4 mb-6">
+          <div className="w-full" style={{ maxWidth: 'calc(500px + 350px + 500px + 2rem)' }}>
+            <div className="flex gap-4 w-full">
+              {/* LinkedIn Button */}
+              <Link 
+                href="https://www.linkedin.com/in/aaron-oster/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/40 backdrop-blur-sm rounded-xl p-4 flex items-center justify-center hover:bg-black/50 transition-all duration-200 hover:scale-[1.01] hover:shadow-emerald-500/20 hover:shadow-lg group w-1/2"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-7 h-7 text-emerald-300 group-hover:text-emerald-200 transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <div className="text-center">
+                    <h2 className="text-xl font-semibold text-emerald-200 group-hover:text-emerald-100 transition-colors">LinkedIn Profile</h2>
+                    <p className="text-emerald-100/80 text-sm">Connect with me professionally</p>
+                  </div>
+                </div>
+              </Link>
+              
+              {/* Resume Button */}
+              <a 
+                href="/Aaron_Oster_Resume (3).pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="bg-black/40 backdrop-blur-sm rounded-xl p-4 flex items-center justify-center hover:bg-black/50 transition-all duration-200 hover:scale-[1.01] hover:shadow-emerald-500/20 hover:shadow-lg group w-1/2"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-7 h-7 text-emerald-300 group-hover:text-emerald-200 transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8v-2zm0-4h8v2H8v-2z"/>
+                  </svg>
+                  <div className="text-center">
+                    <h2 className="text-xl font-semibold text-emerald-200 group-hover:text-emerald-100 transition-colors">Download Resume</h2>
+                    <p className="text-emerald-100/80 text-sm">View my qualifications</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Main content in three columns */}
         <div className="flex flex-col md:flex-row items-start gap-4 mb-8 md:h-[calc(100vh-160px)] md:justify-center">
           {/* Left Side - Image */}
