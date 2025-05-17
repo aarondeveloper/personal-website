@@ -9,7 +9,7 @@ const experiences = [
     role: 'Full Stack Software Engineer / Data Scientist',
     period: 'Jun. 2024 - Present',
     logo: '/fastbreak_ai_logo.jpg',
-    technologies: ['Python', 'Bash', 'PHP', 'JavaScript', 'SQL', 'React', 'GitHub', 'Linux'],
+    technologies: ['Python', 'AWS', 'Snowflake', 'DBT', 'SQL', 'Next.js', 'Tailwind CSS', 'Docker', 'Kubernetes', "huggingface", "llama", "openai", "langchain", "rag"],
     achievements: [
       'Developed and implemented data extraction mechanisms from frontend interactions, transforming and structuring data for seamless integration into the database',
       'Automated report generation processes using Python, improving geo-location analysis and significantly reducing manual workload',
@@ -24,7 +24,7 @@ const experiences = [
     period: 'Jan. 2023 - Feb. 2024',
     subtitle: 'Undergraduate Researcher',
     logo: '/ud_logo.png',
-    technologies: ['Python', 'Flask', 'Pandas', 'Transformers'],
+    technologies: ['Python', 'Flask', 'Pandas', 'Transformers', 'Huggingface', 'llama', 'openai', 'langchain', 'rag', "Large Language Models", "NLP"],
     achievements: [
       'Delivered technical presentations at research showcases, effectively communicating findings to diverse audiences',
       'Developed a machine learning framework utilizing natural language processing (NLP) to enhance protein functionality prediction',
