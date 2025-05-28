@@ -10,13 +10,35 @@ const experiences = [
     role: 'Full Stack Software Engineer / Data Scientist',
     period: 'Jun. 2024 - Present',
     logo: '/fastbreak_ai_logo.jpg',
-    technologies: ['Python', 'AWS', 'Snowflake', 'DBT', 'SQL', 'Next.js', 'Tailwind CSS', 'Docker', 'Kubernetes', "huggingface", "llama", "openai", "langchain", "rag"],
+    technologies: ['Python', 'AWS', 'React', 'Next.js', 'PostgreSQL', 'DBT', 'Snowflake'],
     achievements: [
-      'Developed and implemented data extraction mechanisms from frontend interactions, transforming and structuring data for seamless integration into the database',
-      'Automated report generation processes using Python, improving geo-location analysis and significantly reducing manual workload',
-      'Configured and optimized Salesforce CRM for lead tracking, user engagement monitoring, and business intelligence',
-      'Designed and implemented ORM-based solutions to facilitate communication between multiple database architectures, ensuring robust and scalable system integration',
-      'Optimized server and client-side caching mechanisms, reducing AJAX and API call overhead to enhance performance and prevent site traffic overload'
+      'Engineered ETL workflows to capture, transform, and load frontend event data into PostgreSQL',
+      'Automated Python-driven geo-location analytics and report generation, cutting manual effort and accelerating insights',
+      'Led end-to-end development of a React Native mobile app, integrating Supabase for the backend and Auth0 for secure user authentication',
+      'Implemented Snowflake Snowpipe to automate ELT/ETL pipelines, ingesting new data from S3 into Snowflake pipelines',
+      'Built Next.js/React dashboards to schedule, monitor, and visualize ML model runs, enhancing team productivity'
+    ]
+  },
+  {
+    company: 'ZADSTER LLC',
+    role: 'Full Stack Architect',
+    period: 'May 2024 - May 2025',
+    logo: '/zadster_logo.png',
+    technologies: ['Next.js', 'Typescript', 'AWS', 'ORM', 'PostgreSQL', 'Auth0'],
+    achievements: [
+      'Engineered a responsive Next.js and Tailwind CSS front end for users to log and track vehicle restoration projects, receipts, and modifications',
+      'Implemented Auth0 for secure user sign-up, authentication, and email verification',
+      'Designed and optimized PostgreSQL schemas to manage user profiles, project data, and transaction histories'
+    ]
+  },
+  {
+    company: 'Macys',
+    role: 'Luxury Sales Associate',
+    period: 'Aug. 2023 - Feb. 2024',
+    logo: '/macys_logo.png',
+    technologies: ['Sales', 'Management'],
+    achievements: [
+      'Met and exceeded monthly luxury sales targets through tailored styling consultations, strategic upselling, and cultivating long-term client relationships'
     ]
   },
   {
@@ -25,13 +47,13 @@ const experiences = [
     period: 'Jan. 2023 - Feb. 2024',
     subtitle: 'Undergraduate Researcher',
     logo: '/ud_logo.png',
-    technologies: ['Python', 'Flask', 'Pandas', 'Transformers', 'Huggingface', 'llama', 'openai', 'langchain', 'rag', "Large Language Models", "NLP"],
+    technologies: ['Python', 'Flask', 'Huggingface', 'AWS', 'BigQuery', 'PostgreSQL'],
     achievements: [
-      'Delivered technical presentations at research showcases, effectively communicating findings to diverse audiences',
-      'Developed a machine learning framework utilizing natural language processing (NLP) to enhance protein functionality prediction',
-      'Engineered and preprocessed biological datasets to train a Large Language Model (LLM) for protein sequence analysis',
-      'Designed and implemented a Flask-based web application, enabling interactive querying of predictive models',
-      'Achieved 92% accuracy on the test dataset, demonstrating the efficacy of the developed predictive model'
+      'Presented complex research results at lab showcases, translating technical insights for cross-disciplinary audiences',
+      'Architected an NLP-driven ML pipeline to predict protein functionality, boosting prediction accuracy and reliability',
+      'Processed and curated biological datasets to train custom LLMs for advanced protein sequence analysis',
+      'Built a Flask web interface for real-time model queries, streamlining user access to predictive insights',
+      'Refined model parameters to achieve 92% test accuracy, validating the framework\'s robustness'
     ]
   }
 ];
