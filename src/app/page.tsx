@@ -88,7 +88,7 @@ export default function Home() {
               
               {/* Resume Button */}
               <a 
-                href="/Aaron_Oster_Resume (3).pdf" 
+                href="/Aaron_Oster_s_Resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
                 download
