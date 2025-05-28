@@ -131,9 +131,6 @@ export default function Experience() {
                           {experience.company}
                         </h2>
                         <h3 className="text-lg md:text-xl text-white mt-1 md:mt-2">{experience.role}</h3>
-                        {experience.subtitle && (
-                          <p className="text-gray-400 text-sm md:text-base mt-0.5 md:mt-1">{experience.subtitle}</p>
-                        )}
                       </div>
                       <div className="flex flex-col mt-2 md:mt-0 md:ml-4 md:items-end md:text-right">
                         <span className="text-emerald-400 font-mono text-sm md:text-base">
