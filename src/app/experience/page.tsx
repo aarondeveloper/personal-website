@@ -9,6 +9,7 @@ const experiences = [
     company: 'Fastbreak AI',
     role: 'Full Stack Software Engineer / Data Scientist',
     period: 'Jun. 2024 - Present',
+    duration: '1 Year',
     logo: '/fastbreak_ai_logo.jpg',
     technologies: ['Python', 'AWS', 'React', 'Next.js', 'PostgreSQL', 'DBT', 'Snowflake'],
     achievements: [
@@ -23,6 +24,7 @@ const experiences = [
     company: 'ZADSTER LLC',
     role: 'Full Stack Architect',
     period: 'May 2024 - May 2025',
+    duration: '1 year',
     logo: '/zadster_logo.png',
     technologies: ['Next.js', 'Typescript', 'AWS', 'ORM', 'PostgreSQL', 'Auth0'],
     achievements: [
@@ -35,6 +37,7 @@ const experiences = [
     company: 'Macys',
     role: 'Luxury Sales Associate',
     period: 'Aug. 2023 - Feb. 2024',
+    duration: '6 months',
     logo: '/macys_logo.png',
     technologies: ['Sales', 'Management'],
     achievements: [
@@ -45,7 +48,7 @@ const experiences = [
     company: 'Gleghorn Biomedical Engineering Lab',
     role: 'Machine Learning Engineer / Data Scientist',
     period: 'Jan. 2023 - Feb. 2024',
-    subtitle: 'Undergraduate Researcher',
+    duration: '1 year 1 month',
     logo: '/ud_logo.png',
     technologies: ['Python', 'Flask', 'Huggingface', 'AWS', 'BigQuery', 'PostgreSQL'],
     achievements: [
@@ -128,13 +131,15 @@ export default function Experience() {
                           {experience.company}
                         </h2>
                         <h3 className="text-lg md:text-xl text-white mt-1 md:mt-2">{experience.role}</h3>
-                        {experience.subtitle && (
-                          <p className="text-gray-400 text-sm md:text-base mt-0.5 md:mt-1">{experience.subtitle}</p>
-                        )}
                       </div>
-                      <span className="text-emerald-400 font-mono text-sm md:text-base mt-2 md:mt-0 md:ml-4">
-                        {experience.period}
-                      </span>
+                      <div className="flex flex-col mt-2 md:mt-0 md:ml-4 md:items-end md:text-right">
+                        <span className="text-emerald-400 font-mono text-sm md:text-base">
+                          {experience.period}
+                        </span>
+                        <span className="text-emerald-300/80 font-mono text-xs md:text-sm mt-0.5">
+                          {experience.duration}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
