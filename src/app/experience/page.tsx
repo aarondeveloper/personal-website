@@ -8,7 +8,7 @@ const experiences = [
   {
     company: 'Fastbreak AI',
     role: 'Full Stack Software Engineer / Data Scientist',
-    period: 'Jun. 2024 - Present',
+    period: 'Jun. 2024 - Jun. 2025',
     duration: '1 Year',
     logo: '/fastbreak_ai_logo.jpg',
     technologies: ['Python', 'AWS', 'React', 'Next.js', 'PostgreSQL', 'DBT', 'Snowflake'],
@@ -89,7 +89,7 @@ export default function Experience() {
             
             {/* Resume Button */}
             <a 
-              href="/Aaron_Oster_s_Resume.pdf" 
+              href="/Aaron_Oster_Resume.pdf" 
               target="_blank"
               rel="noopener noreferrer"
               download
