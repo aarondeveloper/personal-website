@@ -43,9 +43,43 @@ const projects: Project[] = [
     ]
   },
   {
+    name: 'Find Song of YT Short with Unrelated Dialogue',
+    description: 'An AI-powered tool that identifies songs from YouTube Shorts even when the audio contains unrelated dialogue or background noise. Uses advanced audio processing and machine learning to extract and recognize music patterns while filtering out speech and other audio interference.',
+    technologies: ['Python', 'Machine Learning', 'Audio Processing', 'YouTube API', 'TensorFlow', 'Librosa', 'Speech Recognition'],
+    image: '/yt_song_finder.png',
+    links: [
+      {
+        name: 'GitHub Repo',
+        url: 'https://github.com/aarondeveloper/get_song_from_yt_short_with_unrelated_dialogue', // Update with actual URL
+        icon: (
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+          </svg>
+        )
+      }
+    ]
+  },
+  {
+    name: 'Simulated Annuity Dashboard',
+    description: 'A comprehensive financial dashboard that simulates and visualizes annuity performance under various market conditions. Built with AWS cloud infrastructure using PySpark for data processing, AWS Glue for ETL pipelines, and Amazon Redshift for data warehousing. Features interactive charts, Monte Carlo simulations, and real-time calculations for different annuity types including fixed, variable, and indexed annuities with customizable parameters. Secured with Auth0 authentication for enterprise-grade security.',
+    technologies: ['PySpark', 'AWS Glue', 'Amazon Redshift', 'Auth0', 'React', 'TypeScript', 'D3.js', 'Chart.js', 'Monte Carlo Simulation', 'Tailwind CSS'],
+    image: '/annuity_dashboard.png',
+    links: [
+      {
+        name: 'GitHub Repo',
+        url: 'https://github.com/aarondeveloper/Annuity_Prediction_Simulation', // Update with actual URL
+        icon: (
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+          </svg>
+        )
+      }
+    ]
+  },
+  {
     name: 'Play Chess with Voice',
     description: 'A voice-controlled chess application that allows players to make moves using natural language commands. Integrates speech recognition with chess gameplay for a hands-free experience.',
-    technologies: ['Python', "Text To Speech TTS", 'Web Speech API', 'Docker', 'Speech Recognition', "Rest API"],
+    technologies: ['Python', "Text To Speech TTS", 'Web Speech API', 'Docker', 'Speech Recognition', "DEEPGRAM STT", "Rest API"],
     image: '/voice_chess.png',
     links: [
       {
@@ -80,7 +114,7 @@ const projects: Project[] = [
         url: 'https://devpost.com/software/ada-ai',
         icon: (
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c.009-2.569-1.096-3.853-3.767-3.853z"/>
+            <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c0-2.569-1.096-3.853-3.767-3.853z"/>
           </svg>
         )
       }
