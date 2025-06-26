@@ -45,8 +45,8 @@ const projects: Project[] = [
   {
     name: 'Find Song of YT Short with Unrelated Dialogue',
     description: 'An AI-powered tool that identifies songs from YouTube Shorts even when the audio contains unrelated dialogue or background noise. Uses Demucs and U-Net-based AI architecture to filter different audio modalities, specifically isolating music by filtering out voice and other audio interference. Downloads YouTube videos directly as MP3 files using yt-dlp, then processes the filtered audio through either ACRCloud API or Shazam to identify the underlying song.',
-    technologies: ['Python', 'Demucs', 'U-Net AI', 'yt-dlp', 'ACRCloud API', 'Shazam API', 'Audio Processing', 'Machine Learning', 'YouTube API', 'TensorFlow', 'Librosa'],
-    image: '/yt_song_finder.png',
+    technologies: ['Python', 'Demucs', 'U-Net AI', 'yt-dlp', 'ACRCloud API', 'Shazam API', 'Audio Processing', 'Machine Learning', 'YouTube API', 'TensorFlow'],
+    image: '/yt_reels_logo.jpeg',
     links: [
       {
         name: 'GitHub Repo',
@@ -58,8 +58,8 @@ const projects: Project[] = [
         )
       },
       {
-        name: 'Demo Video',
-        url: '#', // Update with actual video URL when uploaded
+        name: 'LinkedIn Post',
+        url: 'https://www.linkedin.com/posts/activity-7343906588304269313-eC_G?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_0AoYBjpPgA319ZnVMjK7o4wPErfXORhQ', // Update with actual video URL when uploaded
         icon: (
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"/>
