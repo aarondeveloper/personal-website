@@ -44,8 +44,8 @@ const projects: Project[] = [
   },
   {
     name: 'Find Song of YT Short with Unrelated Dialogue',
-    description: 'An AI-powered tool that identifies songs from YouTube Shorts even when the audio contains unrelated dialogue or background noise. Uses advanced audio processing and machine learning to extract and recognize music patterns while filtering out speech and other audio interference.',
-    technologies: ['Python', 'Machine Learning', 'Audio Processing', 'YouTube API', 'TensorFlow', 'Librosa', 'Speech Recognition'],
+    description: 'An AI-powered tool that identifies songs from YouTube Shorts even when the audio contains unrelated dialogue or background noise. Uses Demucs and U-Net-based AI architecture to filter different audio modalities, specifically isolating music by filtering out voice and other audio interference. Downloads YouTube videos directly as MP3 files using yt-dlp, then processes the filtered audio through either ACRCloud API or Shazam to identify the underlying song.',
+    technologies: ['Python', 'Demucs', 'U-Net AI', 'yt-dlp', 'ACRCloud API', 'Shazam API', 'Audio Processing', 'Machine Learning', 'YouTube API', 'TensorFlow', 'Librosa'],
     image: '/yt_song_finder.png',
     links: [
       {
